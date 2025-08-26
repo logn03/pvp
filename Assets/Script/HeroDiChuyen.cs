@@ -14,6 +14,8 @@ public class HeroDiChuyen : MonoBehaviour
     public Transform groundCheck;
     public bool isGrounded;
 
+
+    public HeroVaCham HeroVaCham;
     void Start()
     {
     }
@@ -31,7 +33,7 @@ public class HeroDiChuyen : MonoBehaviour
     }
     private void capnhatnhay()
     {
-        if (Input.GetButtonDown("Jump")) // Kiem tra nut nhay
+        if (Input.GetButtonDown("Jump") && HeroVaCham.isGameOver == false) // Kiem tra nut nhay
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, nhay); // Dat van toc nhay
         }
@@ -41,11 +43,11 @@ public class HeroDiChuyen : MonoBehaviour
     {
         traiphai = Input.GetAxis("Horizontal"); // Lay input ngang tu ban phim
         rb.linearVelocity = new Vector2(traiphai * speed, rb.linearVelocity.y); // Cap nhat van toc theo input ngang
-        if (traiphai > 0)
+        if (traiphai > 0 && HeroVaCham.isGameOver == false)
         {
             transform.localScale = new Vector3(1, 1, 1); // Quay sang phai
         }
-        else if (traiphai < 0)
+        else if (traiphai < 0 && HeroVaCham.isGameOver == false)
         {
             transform.localScale = new Vector3(-1, 1, 1); // Quay sang trai
         }
