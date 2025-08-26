@@ -18,7 +18,7 @@ public class HeroDiChuyen : MonoBehaviour
     {
     }
 
-    
+
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -26,7 +26,7 @@ public class HeroDiChuyen : MonoBehaviour
         dichuyen(); // Goi ham dichuyen de xu ly di chuyen
         capnhatnhay(); // Goi FixedUpdate de xu ly nhay
 
-            animator.SetBool("fly", !isGrounded);
+        animator.SetBool("fly", !isGrounded);
 
     }
     private void capnhatnhay()
@@ -62,6 +62,4 @@ public class HeroDiChuyen : MonoBehaviour
             animator.SetFloat("walk", 0);
         }
     }
-
-
 }
