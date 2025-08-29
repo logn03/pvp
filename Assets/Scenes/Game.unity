@@ -1096,7 +1096,8 @@ MonoBehaviour:
   diemText: {fileID: 1404629554}
   Mau: {fileID: 2139748883}
   mauHienTai: 0
-  mauToiDa: 10
+  mauToiDa: 0.5
+  mauGiam: 0.01
   heroDiChuyen: {fileID: 862713263}
   cinemachineCamera: {fileID: 1990110109}
   gameOverUi: {fileID: 2097486937}

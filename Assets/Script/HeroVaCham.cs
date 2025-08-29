@@ -11,11 +11,15 @@ public class HeroVaCham : MonoBehaviour
     public CapNhatMau Mau;
     public float mauHienTai;
     public float mauToiDa = 10;
+    public float mauGiam = 1;
     public HeroDiChuyen heroDiChuyen;
 
     public GameObject cinemachineCamera;
     public GameObject gameOverUi;
     public bool isGameOver = false;
+
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,22 +56,38 @@ public class HeroVaCham : MonoBehaviour
         }
     }
 
+
+
     private void TruMauTheoThoiGian()
     {
-        if (!heroDiChuyen.isGrounded)
+        if (mauHienTai > 0)
+
         {
-            if (mauHienTai > 0)
+            if (!heroDiChuyen.isGrounded)
             {
-                mauHienTai -= 2; // trừ 2 máu
+                mauHienTai -= mauGiam; // trừ 2 máu
                 Mau.CapNhat(mauHienTai, mauToiDa);
             }
-            else
+            else if (heroDiChuyen.isGrounded)
             {
-                // Ngừng gọi TimeDown khi máu = 0
-                CancelInvoke(nameof(TruMauTheoThoiGian));
-                GameOver();
+                if (mauHienTai < mauToiDa)
+                {
+                    mauHienTai += mauGiam; // trừ 2 máu
+                    Mau.CapNhat(mauHienTai, mauToiDa);
+                }
+                else
+                {
+                    mauHienTai = mauToiDa;
+                }
             }
         }
+        else
+        {
+            // Ngừng gọi TimeDown khi máu = 0
+            CancelInvoke(nameof(TruMauTheoThoiGian));
+            GameOver();
+        }
+
     }
 
     public void GameOver()
@@ -77,7 +97,7 @@ public class HeroVaCham : MonoBehaviour
         cinemachineCamera.SetActive(false);
         diemText.SetText(diem.ToString());
         Time.timeScale = 0;
-    }    
+    }
 
     public void ChoiLai()
     {
@@ -86,7 +106,8 @@ public class HeroVaCham : MonoBehaviour
         diem = 0;
         mauHienTai = mauToiDa;
         Mau.CapNhat(mauHienTai, mauToiDa);
-        SceneManager.LoadScene("Game");          
+        SceneManager.LoadScene("Game");
     }    
+    
 
 }

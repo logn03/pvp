@@ -33,7 +33,7 @@ public class HeroDiChuyen : MonoBehaviour
     }
     private void capnhatnhay()
     {
-        if (Input.GetButtonDown("Jump") && HeroVaCham.isGameOver == false) // Kiem tra nut nhay
+        if (Input.GetKey(KeyCode.Space) && HeroVaCham.isGameOver == false) // Kiem tra nut nhay
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, nhay); // Dat van toc nhay
         }
